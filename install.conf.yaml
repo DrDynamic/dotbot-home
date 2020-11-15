@@ -17,10 +17,23 @@
     ~/.zlogout: home/config/zsh/zlogout
     ~/.zshrc: home/config/zsh/zshrc
 
+# apt:
+#  - zsh
+#  - flatpak
+#  - neovim
+# git:
+#  - oh-my-zsh
+#  - p10k
+#  - autocomplete
+# configure:
+#  - flatpak repo
+#  - intall font (MesloLGS NF)
+#
 # shell: 
 #  - install zsh 
 #  - oh-my-zsh 
 #  - p10k
 #  - autocomplete
 #  - flatpak && repo
-#  - neovim 
+#  - neovim
+#  - install font MesloLGS NF
