@@ -1,0 +1,2 @@
+#!/bin/bash
+pkexec openvpn --config ~/.config/kzvnr/mweber@gitlab.ovpn --auth-user-pass ~/.config/kzvnr/auth > /tmp/kzvnr-vpn.log &

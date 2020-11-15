@@ -1,0 +1,131 @@
+#!/usr/bin/python3
+import secretstorage
+from contextlib import closing
+from getpass import getpass
+from sys import argv
+from tempfile import mkdtemp
+from os import path, system
+import subprocess
+from shutil import rmtree
+from time import sleep
+
+command_name = path.basename(__file__)
+
+app_id = 'me.mweber.ovpn.kzvnr'
+type_credentials = 'credentials'
+type_config = 'config'
+
+def boolean_input(prompt, suffix=" (y/n) "):
+    while "the answer is invalid":
+        answer = input(prompt + suffix).lower().strip()
+        if len(answer) <= 0:
+            continue
+        if answer[0] == 'y':
+            return True
+        elif answer[0] == 'n':
+            return False
+
+def file_input(prompt):
+    config_path = input(prompt)
+    if path.isfile(config_path):
+        with open(config_path) as f:
+            return f.read()
+    return None
+
+def get_secret(type_name, collection):
+    items = list(collection.search_items({'app_id':app_id, 'type':type_name}))
+    if len(items) > 1:
+        raise Exception('The secret is ambiguous!')
+    elif len(items) <= 0:
+        return None
+    else:
+        return items[0]
+
+def clear_secret(type_name, collection):
+    item = get_item(type_name, collection)
+    if item is None:
+        print('Secret not found!')
+    else:
+        item.delete()
+
+
+
+def create_connection_files(username, password, config):
+    temp_dir = mkdtemp('_kzvpn')
+    with open(path.join(temp_dir, 'kzvnr.ovpn'),'w') as config_file:
+        config_file.write(config)
+    with open(path.join(temp_dir, 'creds'), 'w') as cred_file:
+        cred_file.write(username + "\n" + password)
+    return temp_dir
+
+
+connection = secretstorage.dbus_init()
+with closing(connection):
+    collection = secretstorage.get_default_collection(connection)
+
+    if len(argv) > 1:
+        if argv[1].lower().strip() in ['--help', '-h', 'help']:
+            print(command_name + ' - connects to vpn of the kzvnr (may asks for credentials of config if not configured)')
+            print(command_name + ' [--help|-h|help] - shows this help')
+            print(command_name + ' [--delete|-d] <all|credentials|config> - deletes the specified secret(s) from SecretiService (shows wizzard if nothing is specified)')
+            exit()
+        if argv[1].lower().strip() in ['--delete', '-d']:
+            if len(argv) > 2:
+                if argv[2].lower().strip() == 'all':
+                    clear_secret(type_credentials, collection)
+                    clear_secret(type_config, collection)
+                elif argv[2].lower().strip() == type_credentials:
+                    clear_secret(type_credentials, collection)
+                elif argv[2].lower().strip() == type_config:
+                    clear_secret(type_config, collection)
+                else:
+                    print('There is no Secret of type ' + argv[1])
+            else:
+                if boolean_input('Delete credentials?'):
+                    clear_secret(type_credentials, collection)
+                if boolean_input('Delete config?'):
+                    clear_secret(type_config, collection)
+            exit()
+
+    credentials = get_secret(type_credentials, collection)
+    config = get_secret(type_config, collection)
+    if credentials is None:
+        print("No login credentials found in SecretService")
+        username = input("Username: ")
+        password = getpass()
+
+        if boolean_input("Write credentials to SecretService?"):
+            collection.create_item(
+                    'Login credentials for openvpn connection to KZVNR',
+                    {'app_id': app_id, 'type': type_credentials, 'username': username},
+                    password.encode('utf-8'))
+    else:
+        username = credentials.get_attributes()['username']
+        password = credentials.get_secret().decode('utf-8')
+
+    if config is None: 
+        print("No config found in SecretService")
+
+        config_data = file_input("Path to *.ovpn file: ")
+        while config_data is None:
+            print("Config file not found!")
+            config_data = file_input("Path to *.ovpn file: ")
+
+        if boolean_input("Write config to SecretService?"):
+            collection.create_item(
+                    'Config for openvpn connection to KZVNR',
+                    {'app_id': app_id, 'type': type_config},
+                    config_data.encode('utf-8'))
+    else:
+        config_data = config.get_secret().decode('utf-8')
+
+    connect_path = create_connection_files(username, password, config_data)
+    print("connection files created")
+
+    subprocess.call(['pkexec sh -c "openvpn --config '+path.join(connect_path, 'kzvnr.ovpn') + ' --auth-user-pass ' + path.join(connect_path, 'creds') + ' > /tmp/kzvpn.log &"'], shell=True)
+
+    print("openvpn started")
+    sleep(3)
+    rmtree(connect_path)
+    print("connection files removed")
+
