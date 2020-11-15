@@ -1,0 +1,26 @@
+
+- create:
+  - '~/bin'
+  - '~/tmp'
+- clean:
+    ~/:
+    ~/bin/:
+    ~/.config/:
+      recursive: true
+- link:
+    ~/bin/:
+        glob: true
+        path: home/bin/*
+    ~/.config/nvim/init.vim: home/config/neovim/init.vim
+    ~/.gitconfig: home/config/git/gitconfig
+    ~/.p10k.zsh: home/config/zsh/p10k.zsh
+    ~/.zlogout: home/config/zsh/zlogout
+    ~/.zshrc: home/config/zsh/zshrc
+
+# shell: 
+#  - install zsh 
+#  - oh-my-zsh 
+#  - p10k
+#  - autocomplete
+#  - flatpak && repo
+#  - 
