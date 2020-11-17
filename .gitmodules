@@ -8,3 +8,6 @@
 [submodule "plugins/dotbot_plugin_aptget"]
 	path = plugins/dotbot_plugin_aptget
 	url = https://github.com/dein0s/dotbot_plugin_aptget.git
+[submodule "plugins/dotbot-git"]
+	path = plugins/dotbot-git
+	url = https://github.com/DrDynamic/dotbot-git.git

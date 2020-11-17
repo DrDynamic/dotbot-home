@@ -16,6 +16,15 @@
     ~/.p10k.zsh: home/config/zsh/p10k.zsh
     ~/.zlogout: home/config/zsh/zlogout
     ~/.zshrc: home/config/zsh/zshrc
+- sudo:
+    - aptget:
+        - zsh
+        - flatpak
+        - neovim
+
+- script:
+    # install flatpak repo
+
 
 # apt:
 #  - zsh
@@ -28,6 +37,15 @@
 # configure:
 #  - flatpak repo
 #  - intall font (MesloLGS NF)
+# snap:
+#  - bpytop
+#  - chromium
+#  - mailspring
+#  - whatsdesk
+# flatpak:
+#  - bitwarden
+#  - Spotify
+#  - Flatseal
 #
 # shell: 
 #  - install zsh 
