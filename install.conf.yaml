@@ -20,16 +20,22 @@
     - aptget:
         - zsh
         - flatpak
+        - gnome-software-plugin-flatpak
         - neovim
+        - curl
+- shell:
+    - command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+      description: Add fletpak remote
+    - command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+      description: Install oh-my-zsh
+- git:
+    '~/.oh-my-zsh/custom/plugins/zsh-autosuggestions':
+        url: 'https://github.com/zsh-users/zsh-autosuggestions'
+        description: 'oh-my-zsh - autosuggestions'
+    '~/.oh-my-zsh/custom/themes/powerlevel10k':
+        url: 'https://github.com/romkatv/powerlevel10k.git'
+        description: 'oh-my-zsh - powerlevel10k'
 
-- script:
-    # install flatpak repo
-
-
-# apt:
-#  - zsh
-#  - flatpak
-#  - neovim
 # git:
 #  - oh-my-zsh
 #  - p10k
