@@ -13,6 +13,10 @@
         path: home/bin/*
     ~/.config/nvim/init.vim: home/config/neovim/init.vim
     ~/.gitconfig: home/config/git/gitconfig
+    ~/.local/share/fonts/:
+        create: true
+        glob: true
+        path: home/local/fonts/*
     ~/.p10k.zsh: home/config/zsh/p10k.zsh
     ~/.zlogout: home/config/zsh/zlogout
     ~/.zshrc: home/config/zsh/zshrc
@@ -24,6 +28,8 @@
         - neovim
         - curl
 - shell:
+    - command: fc-cache -f -v
+      description: regenerate font cache
     - command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
       description: Add fletpak remote
     - command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -36,10 +42,6 @@
         url: 'https://github.com/romkatv/powerlevel10k.git'
         description: 'oh-my-zsh - powerlevel10k'
 
-# git:
-#  - oh-my-zsh
-#  - p10k
-#  - autocomplete
 # configure:
 #  - flatpak repo
 #  - intall font (MesloLGS NF)
