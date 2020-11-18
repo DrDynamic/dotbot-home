@@ -47,7 +47,7 @@
     - command: ./scripts/configure-gnome-terminal.sh
       description: Configure gnome-terminal
       quiet: true
-    - command: sudo chsh -s $(which zsh)
+    - command: sudo usermod --shell $(which zsh) $(whoami)
       description: change default shell
 - git:
     '~/.oh-my-zsh/custom/plugins/zsh-autosuggestions':
