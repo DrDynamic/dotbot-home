@@ -11,7 +11,9 @@
     ~/bin/:
         glob: true
         path: home/bin/*
-    ~/.config/nvim/init.vim: home/config/neovim/init.vim
+    ~/.config/nvim/init.vim:
+        create: true
+        path: home/config/neovim/init.vim
     ~/.gitconfig: home/config/git/gitconfig
     ~/.local/share/fonts/:
         create: true
@@ -52,6 +54,9 @@
     '~/.oh-my-zsh/custom/themes/powerlevel10k':
         url: 'https://github.com/romkatv/powerlevel10k.git'
         description: 'oh-my-zsh - powerlevel10k'
+- sudo:
+    - shell:
+        - command: usermod --shell $(which zsh) $(whoami)
 - flatpak:
     - bitwarden
     - spotify
