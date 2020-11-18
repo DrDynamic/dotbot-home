@@ -41,12 +41,14 @@
     - command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
       description: Add fletpak remote
       quiet: true
-    - command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    - command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --keep-zshrc --unattended
       description: Install oh-my-zsh
       quiet: true
     - command: ./scripts/configure-gnome-terminal.sh
       description: Configure gnome-terminal
       quiet: true
+    - command: sudo chsh -s $(which zsh)
+      description: change default shell
 - git:
     '~/.oh-my-zsh/custom/plugins/zsh-autosuggestions':
         url: 'https://github.com/zsh-users/zsh-autosuggestions'
@@ -54,9 +56,6 @@
     '~/.oh-my-zsh/custom/themes/powerlevel10k':
         url: 'https://github.com/romkatv/powerlevel10k.git'
         description: 'oh-my-zsh - powerlevel10k'
-- sudo:
-    - shell:
-        - command: usermod --shell $(which zsh) $(whoami)
 - flatpak:
     - bitwarden
     - spotify
