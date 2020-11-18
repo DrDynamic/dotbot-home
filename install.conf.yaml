@@ -27,13 +27,24 @@
         - gnome-software-plugin-flatpak
         - neovim
         - curl
+    - snap:
+        - pbytop
+        - chromium
+        - mailspring
+        - whatsdesk
 - shell:
     - command: fc-cache -f -v
       description: regenerate font cache
+      quiet: true
     - command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
       description: Add fletpak remote
+      quiet: true
     - command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
       description: Install oh-my-zsh
+      quiet: true
+    - command: ./scripts/configure-gnome-terminal.sh
+      description: Configure gnome-terminal
+      quiet: true
 - git:
     '~/.oh-my-zsh/custom/plugins/zsh-autosuggestions':
         url: 'https://github.com/zsh-users/zsh-autosuggestions'
@@ -41,25 +52,7 @@
     '~/.oh-my-zsh/custom/themes/powerlevel10k':
         url: 'https://github.com/romkatv/powerlevel10k.git'
         description: 'oh-my-zsh - powerlevel10k'
-
-# configure:
-#  - flatpak repo
-#  - intall font (MesloLGS NF)
-# snap:
-#  - bpytop
-#  - chromium
-#  - mailspring
-#  - whatsdesk
-# flatpak:
-#  - bitwarden
-#  - Spotify
-#  - Flatseal
-#
-# shell: 
-#  - install zsh 
-#  - oh-my-zsh 
-#  - p10k
-#  - autocomplete
-#  - flatpak && repo
-#  - neovim
-#  - install font MesloLGS NF
+- flatpak:
+    - bitwarden
+    - spotify
+    - flatseal
