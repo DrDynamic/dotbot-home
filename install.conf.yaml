@@ -28,7 +28,7 @@
         - neovim
         - curl
     - snap:
-        - pbytop
+        - bpytop
         - chromium
         - mailspring
         - whatsdesk
