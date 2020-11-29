@@ -47,6 +47,9 @@
     - command: ./scripts/configure-gnome-terminal.sh
       description: Configure gnome-terminal
       quiet: true
+    - command: ./scripts/configure-bpytop.sh
+      description: Configure bpytop
+      quiet: true
     - command: sudo usermod --shell $(which zsh) $(whoami)
       description: change default shell
 - git:
