@@ -48,8 +48,15 @@
     - command: ./scripts/configure-gnome-terminal.sh
       description: Configure gnome-terminal
       quiet: true
+    - command: ./scripts/configure-bpytop.sh
+      description: Configure bpytop
+      quiet: true
     - command: sudo usermod --shell $(which zsh) $(whoami)
       description: change default shell
+      quiet: true
+    - command: sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
+      description: Install Nordvpn
+      quiet: true
 - git:
     '~/.oh-my-zsh/custom/plugins/zsh-autosuggestions':
         url: 'https://github.com/zsh-users/zsh-autosuggestions'
