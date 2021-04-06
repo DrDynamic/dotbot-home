@@ -31,6 +31,7 @@
         - curl
     - snap:
         - bpytop
+        - duf-utility
         - chromium
         - mailspring
         - whatsdesk
