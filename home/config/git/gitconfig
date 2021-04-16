@@ -1,3 +1,5 @@
 [user]
 	email = mweber@kzvnr.de
 	name = Max Weber
+[pull]
+	rebase = false
