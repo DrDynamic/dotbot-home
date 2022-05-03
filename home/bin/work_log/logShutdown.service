@@ -1,0 +1,11 @@
+[Unit]
+Description=Loggin Startups and shutdowns
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/bin/true
+ExecStop=/home/mweber/bin/work_log/log.py Shutdown
+
+[Install]
+WantedBy=multi-user.target
