@@ -33,7 +33,6 @@
         - bpytop
         - duf-utility
         - chromium
-        - mailspring
         - whatsdesk
 - shell:
     - command: fc-cache -f -v
@@ -68,3 +67,4 @@
     - bitwarden
     - spotify
     - flatseal
+    - evolution
