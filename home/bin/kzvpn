@@ -122,7 +122,7 @@ with closing(connection):
     connect_path = create_connection_files(username, password, config_data)
     print("connection files created")
 
-    subprocess.call(['pkexec sh -c "openvpn --config '+path.join(connect_path, 'kzvnr.ovpn') + ' --auth-user-pass ' + path.join(connect_path, 'creds') + ' > /tmp/kzvpn.log &"'], shell=True)
+    subprocess.call(['pkexec sh -c "openvpn --config '+path.join(connect_path, 'kzvnr.ovpn') + ' --data-ciphers \'AES-128-CBC\'' + ' --auth-user-pass ' + path.join(connect_path, 'creds') + ' > /tmp/kzvpn.log &"'], shell=True)
 
     print("openvpn started")
     sleep(3)
