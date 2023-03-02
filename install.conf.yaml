@@ -31,7 +31,7 @@
         - curl
     - snap:
         - bpytop
-        - duf-utility
+#        - duf-utility
         - chromium
         - whatsdesk
 - shell:
@@ -53,8 +53,11 @@
     - command: sudo usermod --shell $(which zsh) $(whoami)
       description: change default shell
       quiet: true
-    - command: sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
-      description: Install Nordvpn
+    - command: sudo add-apt-repository universe && sudo apt install libfuse2
+      description: Install pCloud
+      quiet: true
+    - command: sudo snap install code --classic
+      description: Install VS Code
       quiet: true
 - git:
     '~/.oh-my-zsh/custom/plugins/zsh-autosuggestions':
@@ -67,4 +70,9 @@
     - bitwarden
     - spotify
     - flatseal
-    - evolution
+    - org.gnome.evolution
+    - postman
+    - phpstorm
+    - com.visualstudio.code
+    - cheese
+    - krita
