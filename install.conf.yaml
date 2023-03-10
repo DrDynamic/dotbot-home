@@ -1,7 +1,3 @@
-
-- create:
-  - '~/bin'
-  - '~/tmp'
 - clean:
     ~/:
     ~/bin/:
@@ -15,64 +11,6 @@
         create: true
         path: home/config/neovim/init.vim
     ~/.gitconfig: home/config/git/gitconfig
-    ~/.local/share/fonts/:
-        create: true
-        glob: true
-        path: home/local/fonts/*
     ~/.p10k.zsh: home/config/zsh/p10k.zsh
     ~/.zlogout: home/config/zsh/zlogout
     ~/.zshrc: home/config/zsh/zshrc
-- sudo:
-    - aptget:
-        - zsh
-        - flatpak
-        - gnome-software-plugin-flatpak
-        - neovim
-        - curl
-    - snap:
-        - bpytop
-#        - duf-utility
-        - chromium
-        - whatsdesk
-- shell:
-    - command: fc-cache -f -v
-      description: regenerate font cache
-      quiet: true
-    - command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-      description: Add fletpak remote
-      quiet: true
-    - command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh) --keep-zshrc --unattended"
-      description: Install oh-my-zsh
-      quiet: true
-    - command: ./scripts/configure-gnome-terminal.sh
-      description: Configure gnome-terminal
-      quiet: true
-    - command: ./scripts/configure-bpytop.sh
-      description: Configure bpytop
-      quiet: true
-    - command: sudo usermod --shell $(which zsh) $(whoami)
-      description: change default shell
-      quiet: true
-    - command: sudo add-apt-repository universe && sudo apt install libfuse2
-      description: Install pCloud
-      quiet: true
-    - command: sudo snap install code --classic
-      description: Install VS Code
-      quiet: true
-- git:
-    '~/.oh-my-zsh/custom/plugins/zsh-autosuggestions':
-        url: 'https://github.com/zsh-users/zsh-autosuggestions'
-        description: 'oh-my-zsh - autosuggestions'
-    '~/.oh-my-zsh/custom/themes/powerlevel10k':
-        url: 'https://github.com/romkatv/powerlevel10k.git'
-        description: 'oh-my-zsh - powerlevel10k'
-- flatpak:
-    - bitwarden
-    - spotify
-    - flatseal
-    - org.gnome.evolution
-    - postman
-    - phpstorm
-    - com.visualstudio.code
-    - cheese
-    - krita
