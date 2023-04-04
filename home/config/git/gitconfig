@@ -3,3 +3,5 @@
 	name = Max Weber
 [pull]
 	rebase = false
+[alias]
+	ac = !git add -A && git commit
