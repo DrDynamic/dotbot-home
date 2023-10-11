@@ -14,3 +14,6 @@
     ~/.p10k.zsh: home/config/zsh/p10k.zsh
     ~/.zlogout: home/config/zsh/zlogout
     ~/.zshrc: home/config/zsh/zshrc
+    ~/.config/gdb/gdbinit:
+      create: true
+      path: home/config/gdb/gdbinit
