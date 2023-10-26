@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [[ $(docker container inspect -f '{{.State.Status}}' kali) == 'exited' ]]; then
+    docker start -a kali bash
+elif [[ $(docker container inspect -f '{{.State.Status}}' kali) == 'running' ]]; then
+    docker exec -it kali bash
+elif [[ -z $(docker ps --filter 'name=kali' --format '{{.Names}}') ]]; then
+    docker run --rm -it --name kali \
+           -e XDG_RUNTIME_DIR=/tmp \
+           -e WAYLAND_DISPLAY=$WAYLAND_DISPLAY \
+           -e QT_QPA_PLATFORM=wayland \
+           -v $XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:/tmp/$WAYLAND_DISPLAY  \
+           -v /home/mweber/tmp:/pwn \
+           mweber/kali bash
+else
+    echo "Container is probably starting, wait..."
+fi
