@@ -1,7 +1,12 @@
 [user]
 	email = mweber@kzvnr.de
 	name = Max Weber
+	signingkey = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDbugYx2yRvT5BJShtTkbzhvBKzB6LFBeAZ+GKheSYDLDWIWedfEDYCfDOQSFmjoj9uPsxfE3VZXdQO8+i0oTr0ppOtA0vxdfs63cwYCBdJy3D7ccMtQ3qi/J/1WiEZF8PtFHtcSVBM7ehtePBCv4yv/EV2mjrIfoDLvFhLErmywPpC41LhM/ebUV4IyDes4gaJbrq/LjwnhzvAXi3WgbjXtm3SC2v9bM/Q2f/Xnch5/EUcXzSUmRTkexe+Ci+54QlCQtq9dJEJ9qGOuUNJ2GZnkdeGtcZ8rh98BI4qmWwDLD6l3Hz0jkUuwRLxTzs9M9GyYiqxwViZrkRUbAewtCqN /DC=de/DC=kzvnr/DC=intra/OU=KZVNR/OU=EDV/OU=Benutzer/CN=Weber, Maximilian/emailAddress=mweber@kzvnr.de
 [pull]
 	rebase = false
 [alias]
 	ac = !git add -A && git commit
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
