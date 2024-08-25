@@ -6,10 +6,10 @@
 #: individual font faces and even specify special fonts for particular
 #: characters.
 
- font_family      "MesloLGS NF Regular"
- bold_font        "MesloLGS NF Bold"
- italic_font      "MesloLGS NF Italic"
- bold_italic_font "MesloLGS NF Bold Italic"
+# font_family      monospace
+# bold_font        auto
+# italic_font      auto
+# bold_italic_font auto
 
 #: You can specify different fonts for the bold/italic/bold-italic
 #: variants. To get a full list of supported fonts use the `kitty
@@ -1122,7 +1122,7 @@
 #: Color scheme {{{
 
 # foreground #dddddd
-# background #121212
+ background #121212
 
 #: The foreground and background colors.
 
@@ -1635,7 +1635,8 @@
 #: }}}
 
 #: OS specific tweaks {{{
-# wayland_titlebar_color background
+
+ wayland_titlebar_color background
 
 #: The color of the kitty window's titlebar on Wayland systems with
 #: client side window decorations such as GNOME. A value of system
@@ -2465,9 +2466,3 @@
 #: }}}
 
 #: }}}
-
-
-# BEGIN_KITTY_THEME
-# 1984 Orwellian
-include current-theme.conf
-# END_KITTY_THEME
