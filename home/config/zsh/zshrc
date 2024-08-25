@@ -7,12 +7,8 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-<<<<<<< HEAD
 export GOROOT=/home/mweber/Projects/vendor/golang/go1.22.2
 export PATH=$GOROOT/bin:$HOME/bin:$HOME/Projects/vendor/workspace/bin:$PATH
-=======
-export PATH=$HOME/bin:$HOME/Projects/vendor/workspace/bin:$PATH
->>>>>>> 7cf541e9c279e1f1d9249f2149ee7978b61a9f2c
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
