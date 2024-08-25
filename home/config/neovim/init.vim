@@ -183,7 +183,11 @@ else
 
   " IndentLine
   let g:indentLine_enabled = 1
+<<<<<<< HEAD
   let g:indentLine_concealcursor = 'nc'
+=======
+  let g:indentLine_concealcursor = 'inc'
+>>>>>>> 7cf541e9c279e1f1d9249f2149ee7978b61a9f2c
   let g:indentLine_char = '┆'
   let g:indentLine_faster = 1
 

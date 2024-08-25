@@ -1,0 +1,20 @@
+#!/bin/bash
+LIB="/usr/lib/libgtop11dotnet.so"
+
+if [ $(dpkg-query -W -f='${Status}' ssh-askpass 2>/dev/null | grep -c "ok installed") -eq 0 ];
+then
+    sudo apt-get -yq install ssh-askpass;
+fi
+
+#try to remove cert first because of supspend mode
+ssh-add -q -e "${LIB}"
+
+# add cert
+SSH_ASKPASS="ssh-askpass" ssh-add -q -s "${LIB}" </dev/null
+
+if [ $? -eq 1 ]; then
+    zenity --notification --text="SSH smartcard hinzufügen fehlgeschlagen." --window-icon="error"
+else
+    zenity --notification --text="SSH smartcard hinzugefügt."
+fi
+

@@ -1,8 +1,0 @@
-[Unit]
-Description=Loggin Startups and shutdowns
-
-[Service]
-ExecStart=/home/mweber/bin/work_log/log.py Boot
-
-[Install]
-WantedBy=multi-user.target
