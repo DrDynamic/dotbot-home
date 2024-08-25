@@ -83,7 +83,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(git jump zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
-
+. /usr/share/autojump/autojump.sh
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"

@@ -17,3 +17,6 @@
     ~/.config/gdb/gdbinit:
       create: true
       path: home/config/gdb/gdbinit
+    ~/.config/kitty/kitty.conf:
+      create: true
+      path: home/config/kitty/kitty.conf
