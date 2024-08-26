@@ -7,7 +7,7 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export GOROOT=/home/mweber/Projects/vendor/golang/go1.22.2
+export GOROOT=$HOME/Projects/vendor/go
 export PATH=$GOROOT/bin:$HOME/bin:$HOME/Projects/vendor/workspace/bin:$PATH
 
 # Path to your oh-my-zsh installation.
