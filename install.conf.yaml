@@ -21,3 +21,6 @@
       glob: true
       create: true
       path: home/config/kitty/*
+    ~/.var/app/org.contourterminal.Contour/config/contour/contour.yml:
+      create: true
+      path: home/config/contour/contour.yml
