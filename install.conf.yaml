@@ -17,3 +17,7 @@
     ~/.config/gdb/gdbinit:
       create: true
       path: home/config/gdb/gdbinit
+    ~/.config/wezterm:
+        glob: true
+        create: true
+        path: home/config/wezterm/*
