@@ -7,9 +7,14 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+<<<<<<< HEAD
 export PATH=$HOME/Projects/vendor/workspace/bin:$HOME/Projects/vendor/go/bin:$HOME/bin:$PATH
 export GOROOT=$HOME/Projects/vendor/go
 export GOPATH=$HOME/Projects/go
+=======
+export GOROOT=$HOME/Projects/vendor/go
+export PATH=$GOROOT/bin:$HOME/bin:$HOME/Projects/vendor/workspace/bin:$PATH
+>>>>>>> 1a9781cf776bf0c630f614a4b47f787d5472201c
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -84,7 +89,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(git jump zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
-
+. /usr/share/autojump/autojump.sh
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -114,7 +119,8 @@ alias vim=nvim
 alias top=bpytop
 #alias df='duf --only local'
 alias config="git -C $DOTBOT_HOME"
-
+alias please=sudo
+alias oracle="docker exec -it --user=54321 kzv-oracle-1 bash -c \"sqlplus sys/secret@freepdb1 as sysdba\""
 laradock() {
     if [[ $1 == "login" && $2 == "workspace" ]] ; then
         if [[ $2 == "workspace" ]] ; then

@@ -13,10 +13,6 @@ git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive
 
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" \
-    -p "plugins/dotbot-sudo/sudo.py" \
-    -p "plugins/dotbot-git/git.py" \
-    -p "plugins/dotbot-flatpak/flatpak.py" \
-    -p "plugins/dotbot-snap/snap.py" \
     -d "${BASEDIR}" \
     -c "${CONFIG}" \
     "${@}"
