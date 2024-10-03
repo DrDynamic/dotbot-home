@@ -500,9 +500,9 @@ profiles:
         background:
             # Background opacity to use. A value of 1.0 means fully opaque whereas 0.0 means fully
             # transparent. Only values between 0.0 and 1.0 are allowed.
-            opacity: 1.0
+            opacity: 0.9
             # Some platforms can blur the transparent background (currently only Windows 10 is supported).
-            blur: false
+            blur: true
 
         # Specifies a colorscheme to use (alternatively the colors can be inlined).
         #

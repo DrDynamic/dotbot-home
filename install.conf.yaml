@@ -17,12 +17,10 @@
     ~/.config/gdb/gdbinit:
       create: true
       path: home/config/gdb/gdbinit
-<<<<<<< HEAD
     ~/.config/wezterm:
         glob: true
         create: true
         path: home/config/wezterm/*
-=======
     ~/.config/kitty/:
       glob: true
       create: true
@@ -30,4 +28,3 @@
     ~/.var/app/org.contourterminal.Contour/config/contour/contour.yml:
       create: true
       path: home/config/contour/contour.yml
->>>>>>> 1a9781cf776bf0c630f614a4b47f787d5472201c
