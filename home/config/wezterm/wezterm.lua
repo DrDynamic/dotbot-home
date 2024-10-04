@@ -1,6 +1,7 @@
 -- Pull in the wezterm API
 local wezterm = require 'wezterm'
-local titlebar = require 'titlebar.titlebar'
+local titlebar = require 'titlebar/titlebar'
+local status_git = require 'titlebar/status_git'
 
 -- This will hold the configuration.
 local config = wezterm.config_builder()
@@ -67,52 +68,9 @@ local function segments_for_right_status(window)
     wezterm.hostname(),
   }
 end
-
-wezterm.on('update-status', function(window)
-  -- Grab the utf8 character for the "powerline" left facing
-  -- solid arrow.
-  local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
-  local segments = segments_for_right_status(window)
-
-  -- Grab the current window's configuration, and from it the
-  -- palette (this is the combination of your chosen colour scheme
-  -- including any overrides).
-  local color_scheme = window:effective_config().resolved_palette
-  local bg = wezterm.color.parse(color_scheme.background)
-  local fg = color_scheme.foreground
-
-  local gradient_to, gradient_from = bg
-  gradient_from = gradient_to:lighten(0.2)
-
-  local gradient = wezterm.color.gradient(
-    {
-      orientation = 'Horizontal',
-      colors = { gradient_from, gradient_to },
-    },
-    #segments -- only gives us as many colours as we have segments.
-  )
-
-  local elements = {}
-
-  for i, seg in ipairs(segments) do
-    local is_first = i == 1
-
-    if is_first then
-      table.insert(elements, { Background = { Color = 'none' } })
-    end
-    table.insert(elements, { Foreground = { Color = gradient[i] } })
-    table.insert(elements, { Text = SOLID_LEFT_ARROW })
-
-    table.insert(elements, { Foreground = { Color = fg } })
-    table.insert(elements, { Background = { Color = gradient[i] } })
-    table.insert(elements, { Text = ' ' .. seg .. ' ' })
-  end
-  
-  table.insert(elements, { Foreground = { Color = '#2c2c2c' } })
-  table.insert(elements, { Text = SOLID_LEFT_ARROW })
-  
-  window:set_right_status(wezterm.format(elements))
-end)
+wezterm.log_info(titlebar)
+titlebar.set_seperator(titlebar.SOLID_LEFT_ARROW)
+titlebar.add_right_status(status_git.new('config', '~/.config/dotbot'))
 
 -- and finally, return the configuration to wezterm
 return config
