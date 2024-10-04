@@ -27,9 +27,6 @@ function new(title, repository)
         extend= function(elements, fg, bg) 
 
             icons = ' '
-            if changes_count == 0 then
-                icons = '✔'
-            else 
                 if local_changes.changes ~= 0 then 
                     icons = icons..'!'
                 end
@@ -42,7 +39,6 @@ function new(title, repository)
                 if commits.remote_ahead ~= 0 then
                     icons = icons..'⇣'
                 end
-            end
 
             if changes_count ~= 0 then 
                 fg = '#2c2c2c'
