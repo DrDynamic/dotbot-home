@@ -3,10 +3,13 @@ local wezterm = require 'wezterm'
 local titlebar = require 'titlebar/titlebar'
 local status_git = require 'titlebar/status_git'
 local status_uptime = require 'titlebar/status_uptime'
+local status_apt = require 'titlebar/status_apt'
+local status_flatpak = require 'titlebar/status_flatpak'
+local status_snap = require 'titlebar/status_snap'
 
 -- This will hold the configuration.
 local config = wezterm.config_builder()
-config.font = wezterm.font("MesloLGS NF")
+config.font = wezterm.font("MesloLGS Nerd Font")
 -- This is where you actually apply your config choices
 
 -- For example, changing the color scheme:
@@ -22,7 +25,7 @@ config.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
 config.initial_cols=145
 config.initial_rows=35
 config.window_frame = {
-  font=wezterm.font({family = 'MesloLGS NF', weight='Bold'}),
+  font=wezterm.font({family = 'MesloLGS Nerd Font', weight='Bold'}),
 --    font=wezterm.font({family = 'Berkeley Mono', weight='Bold'}),
     font_size=11,
     inactive_titlebar_bg='#2c2c2c',
@@ -70,7 +73,10 @@ local function segments_for_right_status(window)
   }
 end
 
-titlebar.set_seperator(titlebar.SOLID_LEFT_ARROW)
+titlebar.set_seperator(titlebar.SOLID_LEFT_ARROW, titlebar.SOLID_LEFT_ARROW_DIVIDER)
+titlebar.add_right_status(status_apt.new())
+titlebar.add_right_status(status_flatpak.new())
+titlebar.add_right_status(status_snap.new())
 titlebar.add_right_status(status_uptime.new())
 titlebar.add_right_status(status_git.new('config', '~/.config/dotbot'))
 

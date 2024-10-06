@@ -1,4 +1,5 @@
 local string = require "string"
+
 return {
     trim = function (s) 
         return (s:gsub("^%s*(.-)%s*$", "%1"))
@@ -11,5 +12,9 @@ return {
             return {} 
         end
         return s:gmatch("[^\n]+")
+    end,
+    count_lines = function(s)
+        return select(2, s:gsub('\n', '\n')) +1
     end
+
 }

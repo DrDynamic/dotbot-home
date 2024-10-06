@@ -40,7 +40,7 @@ function new(title, repository)
                     icons = icons..utf8.char(0xf433)
                 end
 
-            if changes_count ~= 0 then 
+            if bg == '#FFD54F' then 
                 fg = '#2c2c2c'
             end
 
