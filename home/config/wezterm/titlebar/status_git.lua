@@ -1,6 +1,6 @@
 local wezterm = require "wezterm"
-local io = require "io"
-local str = require "str"
+local sh = require "util/sh"
+local str = require "util/str"
 
 function new(title, repository) 
 
@@ -52,7 +52,7 @@ function new(title, repository)
 end
 
 function getLocalChanges(repository)
-    result = execute('git -C '..repository..' status -s')
+    result = sh.execute('git -C '..repository..' status -s')
 
     local changes = 0
     local untracked = 0
@@ -73,9 +73,9 @@ function getLocalChanges(repository)
 end
 
 function getCommitDiff(repository)
-    local curerentBranch = str.trim(execute('git -C '..repository..' branch --show-current'))
-    local localAhead = str.trim(execute('git -C '..repository..' rev-list --count --ignore-missing origin/'..curerentBranch..'..'..curerentBranch))
-    local remoteAhead = str.trim(execute('git -C '..repository..' rev-list --count --ignore-missing '..curerentBranch..'..origin/'..curerentBranch))
+    local curerentBranch = str.trim(sh.execute('git -C '..repository..' branch --show-current'))
+    local localAhead = str.trim(sh.execute('git -C '..repository..' rev-list --count --ignore-missing origin/'..curerentBranch..'..'..curerentBranch))
+    local remoteAhead = str.trim(sh.execute('git -C '..repository..' rev-list --count --ignore-missing '..curerentBranch..'..origin/'..curerentBranch))
     
     return {
         local_ahead = tonumber(localAhead),
@@ -84,12 +84,6 @@ function getCommitDiff(repository)
 
 end
 
-function execute(command)
-    local handle = io.popen(command)
-    local result = handle:read("*a")
-    handle:close()
-    return result
-end
 
 
 return {

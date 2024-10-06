@@ -2,6 +2,7 @@
 local wezterm = require 'wezterm'
 local titlebar = require 'titlebar/titlebar'
 local status_git = require 'titlebar/status_git'
+local status_uptime = require 'titlebar/status_uptime'
 
 -- This will hold the configuration.
 local config = wezterm.config_builder()
@@ -68,9 +69,11 @@ local function segments_for_right_status(window)
     wezterm.hostname(),
   }
 end
-wezterm.log_info(titlebar)
+
 titlebar.set_seperator(titlebar.SOLID_LEFT_ARROW)
+titlebar.add_right_status(status_uptime.new())
 titlebar.add_right_status(status_git.new('config', '~/.config/dotbot'))
+
 
 -- and finally, return the configuration to wezterm
 return config
