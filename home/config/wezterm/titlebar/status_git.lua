@@ -34,10 +34,10 @@ function new(title, repository)
                     icons = icons..'?'
                 end
                 if commits.local_ahead ~= 0 then
-                    icons = icons..'⇡'
+                    icons = icons..utf8.char(0xf431)
                 end
                 if commits.remote_ahead ~= 0 then
-                    icons = icons..'⇣'
+                    icons = icons..utf8.char(0xf433)
                 end
 
             if changes_count ~= 0 then 

@@ -22,8 +22,8 @@ config.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
 config.initial_cols=145
 config.initial_rows=35
 config.window_frame = {
---  font=wezterm.font({family = 'JetBrains Mono', weight='Bold'}),
-    font=wezterm.font({family = 'Berkeley Mono', weight='Bold'}),
+  font=wezterm.font({family = 'MesloLGS NF', weight='Bold'}),
+--    font=wezterm.font({family = 'Berkeley Mono', weight='Bold'}),
     font_size=11,
     inactive_titlebar_bg='#2c2c2c',
     active_titlebar_bg='#272727',
