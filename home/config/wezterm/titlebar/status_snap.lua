@@ -4,11 +4,14 @@ local str = require "util/str"
 
 function new() 
 
-    local upgrades = str.trim(sh.execute('snap refresh --list'))
-    local upgrades_count = str.count_lines(upgrades)
+    local upgrades = nil
+    local upgrades_count = nil
 
     return {
-        init= function() end,
+        init= function() 
+            upgrades = str.trim(sh.execute('snap refresh --list'))
+            upgrades_count = str.count_lines(upgrades)-1
+        end,
         getColor= function() 
             if upgrades_count == 0 then 
                 return nil

@@ -3,9 +3,7 @@ local wezterm = require 'wezterm'
 local titlebar = require 'titlebar/titlebar'
 local status_git = require 'titlebar/status_git'
 local status_uptime = require 'titlebar/status_uptime'
-local status_apt = require 'titlebar/status_apt'
-local status_flatpak = require 'titlebar/status_flatpak'
-local status_snap = require 'titlebar/status_snap'
+local status_ram_free = require 'titlebar.status_ram_free'
 
 -- This will hold the configuration.
 local config = wezterm.config_builder()
@@ -74,9 +72,10 @@ local function segments_for_right_status(window)
 end
 
 titlebar.set_seperator(titlebar.SOLID_LEFT_ARROW, titlebar.SOLID_LEFT_ARROW_DIVIDER)
-titlebar.add_right_status(status_apt.new())
-titlebar.add_right_status(status_flatpak.new())
-titlebar.add_right_status(status_snap.new())
+--titlebar.add_right_status(status_apt.new())
+--titlebar.add_right_status(status_flatpak.new())
+--titlebar.add_right_status(status_snap.new())
+titlebar.add_right_status(status_ram_free.new())
 titlebar.add_right_status(status_uptime.new())
 titlebar.add_right_status(status_git.new('config', '~/.config/dotbot'))
 

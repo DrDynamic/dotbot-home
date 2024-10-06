@@ -3,10 +3,12 @@ local str = require "util/str"
 
 function new() 
 
-    local uptime = str.trim(sh.execute('uptime -p'))
-    local uptime_minutes = tonumber(str.trim(sh.execute("echo $(awk '{print $1}' /proc/uptime) / 60 | bc")))
+    local uptime = nil
+    local uptime_minutes = nil
     return {
         init= function() 
+            uptime = str.trim(sh.execute('uptime -p'))
+            uptime_minutes = tonumber(str.trim(sh.execute("echo $(awk '{print $1}' /proc/uptime) / 60 | bc")))
         end,
         getColor= function()
             if uptime_minutes > ((9*60) + 30) then 
