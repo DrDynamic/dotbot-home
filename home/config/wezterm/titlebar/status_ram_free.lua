@@ -5,7 +5,7 @@ function new()
     local free=nil
     return {
         init=function() 
-            free = sh.execute("awk '/MemFree/ { printf \"%.2f\", $2/1024/1024 }' /proc/meminfo")
+            free = sh.execute("awk '/MemAvailable/ { printf \"%.2f\", $2/1024/1024 }' /proc/meminfo")
         end,
         getColor=function()
             return nil
