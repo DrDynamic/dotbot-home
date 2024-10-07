@@ -1,0 +1,1 @@
+/home/mweber/.config/dotbot/home/config/wezterm/str.lua
